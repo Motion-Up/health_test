@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Тест {{test.title}}
+{% endblock %}
+
+{% block content %}
+    <div class="container marketing" id="tests">
+      <div class="py-5 text-center">
+        <h2>{{ test.title }}</h2>
+        <p class="lead">{{ test.description|linebreaks }}</p>
+      </div>
+  
+      <div class="row g-5">
+  
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">{{ test.title }}</h4>
+          <form method="post" action="{% url 'tests:test_detail'  %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Получить результат</button>
+          </form>
+          
+{% endblock %}

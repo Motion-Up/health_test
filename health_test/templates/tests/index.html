@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Главное меню
+{% endblock %}
+
+{% block content %}
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      {% for m in tests %}
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ m.pk }}" aria-label="Slide {{ m.pk }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Добро пожаловать {{ user.username }}!</h1>
+            <p>Сайт для проведения тестов!</p>
+          </div>
+        </div>
+      </div>
+
+        {% for test in tests %}
+        <div class="carousel-item">
+        <!--  <p><img class="bd-placeholder-img" width="100%" height="100%" src="{{m.photo.url}}" aria-hidden="true" ></p>  -->
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
+        <div class="container">
+          <div class="carousel-caption ext-end">
+            <h1>{{ test.title }}</h1>
+            <p>{{ test.title }}</p>
+            <p><a class="btn btn-lg btn-primary" href="">Пройти тестирование</a></p>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+  <div class="container marketing" id="tests">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+
+        {% for m in tests %}
+        <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#547"/></svg>  -->
+        <p><img class="img-article-left thumb" src="" width="140" height="140"></p>
+        <h2>{{ m.title }}</h2>
+        <p>{{ m.content | truncatechars:150 }}</p>
+        <p><a class="btn btn-secondary" href="">Пройти тестирование &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        {% endfor %}
+
+
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+  {% endblock %}
