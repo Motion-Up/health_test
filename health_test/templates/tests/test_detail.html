@@ -12,13 +12,18 @@
       </div>
   
       <div class="row g-5">
-  
+        {% if result %}
+            <h1>{{ result }}</h1>
+        {% endif %}
+
+        {% if form %}
         <div class="col-md-7 col-lg-8">
           <h4 class="mb-3">{{ test.title }}</h4>
-          <form method="post" action="{% url 'tests:test_detail'  %}" class="needs-validation" novalidate>
+          <form method="post" action="{% url 'tests:test_detail' test.id %}" class="needs-validation" novalidate>
             {% csrf_token %}
             {{ form.as_p }}
             <button class="w-100 btn btn-primary btn-lg" type="submit">Получить результат</button>
           </form>
+        {% endif %}
           
 {% endblock %}

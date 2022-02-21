@@ -13,8 +13,8 @@ def index(request):
     return render(request, 'tests/index.html', context=context)
 
 
-def test(request):
-    test = get_object_or_404(Test, id=1)
+def test(request, test_id):
+    test = get_object_or_404(Test, id=test_id)
     achievements = test.achievements.all()
     data = {form.name: form for form in achievements}
     form = TestForm(request.POST or None, initial=data or None)
@@ -23,14 +23,20 @@ def test(request):
     if request.method == 'POST':
         form = TestForm(request.POST, initial=data)
 
+        # Получаем ответ и пока его никуда не передаем
         if form.is_valid():
             for achieve in achievements:
                 data = request.POST.get(f'{achieve.name}')
                 formula = formula.replace(f'{achieve.name_for_formula}', data)
-            print(eval(formula))
-            return render(request, 'tests/test_detail.html')
+            result = eval(formula)
+            context = {
+                'result': result,
+                'test': test
+            }
+            return render(request, 'tests/test_detail.html', context=context)
 
     context = {
-        'form': form
+        'form': form,
+        'test': test
     }
     return render(request, 'tests/test_detail.html', context=context)
