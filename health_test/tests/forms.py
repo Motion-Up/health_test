@@ -1,7 +1,5 @@
 from django import forms
 
-from .models import Test, ParameterTest, Parameter
-
 
 CHOICE_FOR_TEST = [
     (1, '1'),
