@@ -31,6 +31,10 @@ class Test(models.Model):
         through='AnswerTest',
         related_name='choice_answer'
     )
+    is_active = models.BooleanField(
+        default=False,
+        verbose_name='Статус готовности'
+    )
 
     def __str__(self) -> str:
         return self.title

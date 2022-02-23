@@ -1,4 +1,4 @@
-from dataclasses import replace
+import re
 from django.shortcuts import render, get_object_or_404
 
 from .forms import TestForm
@@ -6,14 +6,14 @@ from .models import Test
 
 
 def index(request):
-    tests = Test.objects.all()
+    tests = Test.objects.all().filter(is_active=True)
     context = {
         'tests': tests
     }
     return render(request, 'tests/index.html', context=context)
 
 
-def test(request, test_id):
+def test_detail(request, test_id):
     test = get_object_or_404(Test, id=test_id)
     achievements = test.achievements.all()
     data = {form.name: form for form in achievements}
