@@ -34,6 +34,7 @@ class TestAdmin(admin.ModelAdmin):
         obj.save()
 
     list_display = ('pk', 'title', 'achievements_name', 'formula', 'answer_name', 'is_active')
+    prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title',)
     empty_value_display = '-пусто-'
 

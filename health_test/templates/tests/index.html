@@ -63,7 +63,7 @@
         <p><img class="img-article-left thumb" src="" width="140" height="140"></p>
         <h2>{{ test.title }}</h2>
         <p>{{ test.content | truncatechars:150 }}</p>
-        <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.id %}">Пройти тестирование &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         {% endfor %}

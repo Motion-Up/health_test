@@ -13,8 +13,8 @@ def index(request):
     return render(request, 'tests/index.html', context=context)
 
 
-def test_detail(request, test_id):
-    test = get_object_or_404(Test, id=test_id)
+def test_detail(request, test_slug):
+    test = get_object_or_404(Test, slug=test_slug)
     achievements = test.achievements.all()
     data = {form.name: form for form in achievements}
     form = TestForm(request.POST or None, initial=data or None)

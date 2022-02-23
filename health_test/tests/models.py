@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 FIELD_TYPE = [
@@ -12,6 +13,12 @@ class Test(models.Model):
     title = models.CharField(
         max_length=200,
         verbose_name='Название теста'
+    )
+    slug = models.SlugField(
+        max_length=200,
+        unique=True,
+        db_index=True,
+        verbose_name='URL'
     )
     description = models.TextField(
         verbose_name='Описание теста',
@@ -38,6 +45,9 @@ class Test(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('test', kwargs={'test_slug': self.slug})
 
     class Meta:
         verbose_name = 'Тесты'
