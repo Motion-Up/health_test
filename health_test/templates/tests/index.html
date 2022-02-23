@@ -13,7 +13,7 @@
       {% endfor %}
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active" data-bs-interval="8000">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
 
         <div class="container">
@@ -25,7 +25,7 @@
       </div>
 
         {% for test in tests %}
-        <div class="carousel-item">
+        <div class="carousel-item" data-bs-interval="8000">
         <!--  <p><img class="bd-placeholder-img" width="100%" height="100%" src="{{m.photo.url}}" aria-hidden="true" ></p>  -->
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
         <div class="container">
@@ -60,7 +60,7 @@
 
         {% for test in tests %}
         <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#547"/></svg>  -->
-        <p><img class="img-article-left thumb" src="" width="140" height="140"></p>
+        <p><img class="img-article-left thumb" src="{{ test.image.url }}" width="140" height="140"></p>
         <h2>{{ test.title }}</h2>
         <p>{{ test.content | truncatechars:150 }}</p>
         <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование &raquo;</a></p>

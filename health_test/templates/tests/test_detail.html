@@ -13,8 +13,12 @@
   
       <div class="row g-5">
         {% if result %}
-            <h1>{{ result }}</h1>
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Пройти тест заново</button>
+        <div class="col-md-7 col-lg-8">
+            <h1 class="mb-3">{{ result }}</h1>
+            <form action="{% url 'tests:test_detail' test.slug %}">
+              <button class="btn btn-outline-success" type="submit">Пройти тест заново</button>
+              <button class="btn btn-outline-success" type="submit">На главную</button>
+            </form>
         {% endif %}
 
         {% if form %}
@@ -23,7 +27,7 @@
           <form method="post" action="{% url 'tests:test_detail' test.slug %}" class="needs-validation" novalidate>
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Получить результат</button>
+            <button class="w-100 btn btn-outline-success" type="submit">Получить результат</button>
           </form>
         {% endif %}
           

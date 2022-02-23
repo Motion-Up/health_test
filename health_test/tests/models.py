@@ -38,6 +38,11 @@ class Test(models.Model):
         through='AnswerTest',
         related_name='choice_answer'
     )
+    image = models.ImageField(
+        'Картинка',
+        upload_to='tests/',
+        blank=True,
+    )
     is_active = models.BooleanField(
         default=False,
         verbose_name='Статус готовности'
