@@ -8,8 +8,8 @@
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      {% for m in tests %}
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ m.pk }}" aria-label="Slide {{ m.pk }}"></button>
+      {% for test in tests %}
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ test.pk }}" aria-label="Slide {{ test.pk }}"></button>
       {% endfor %}
     </div>
     <div class="carousel-inner">
@@ -32,7 +32,7 @@
           <div class="carousel-caption ext-end">
             <h1>{{ test.title }}</h1>
             <p>{{ test.title }}</p>
-            <p><a class="btn btn-lg btn-primary" href="">Пройти тестирование</a></p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование</a></p>
           </div>
         </div>
       </div>

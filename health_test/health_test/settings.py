@@ -14,7 +14,11 @@ SECRET_KEY = os.getenv('TOKEN')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://viewoutside.ru',
+    '62.84.116.37',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -115,7 +119,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'tests:index'
