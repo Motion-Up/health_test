@@ -12,7 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('TOKEN')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '62.84.116.37',
@@ -123,3 +123,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'tests:index'
+
+CSRF_TRUSTED_ORIGINS = ['http://viewoutside.ru*', 'http://viewoutside.ru', 'http://www.viewoutside.ru']
