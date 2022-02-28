@@ -9,7 +9,6 @@ def index(request):
     context = {
         'tests': tests
     }
-    print(tests[0].image.url)
     return render(request, 'tests/index.html', context=context)
 
 
@@ -28,7 +27,7 @@ def test_detail(request, test_slug):
             for achieve in achievements:
                 data = request.POST.get(f'{achieve.name}')
                 formula = formula.replace(f'{achieve.name_for_formula}', data)
-            result = eval(formula)
+            result = float("{0:.2f}".format(eval(formula)))
             context = {
                 'result': result,
                 'test': test
