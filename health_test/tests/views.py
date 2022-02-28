@@ -9,7 +9,6 @@ def index(request):
     context = {
         'tests': tests
     }
-    print(tests[0].image.url)
     return render(request, 'tests/index.html', context=context)
 
 
