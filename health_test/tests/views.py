@@ -27,6 +27,7 @@ def test_detail(request, test_slug):
             for achieve in achievements:
                 data = request.POST.get(f'{achieve.name}')
                 formula = formula.replace(f'{achieve.name_for_formula}', data)
+                formula = formula.replace(',', '.')
             result = float("{0:.2f}".format(eval(formula)))
             context = {
                 'result': result,
