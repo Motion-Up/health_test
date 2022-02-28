@@ -116,16 +116,10 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-<<<<<<< HEAD
-STATIC_URL = '/static/'  # место где собираются все статики для каждого приложения
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # место где собираются все статики для эксплуатации
-
-=======
 STATIC_URL = '/static/'
 # место где собираются все статики для каждого приложения
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # место где собираются все статики для эксплуатации
->>>>>>> 7433b056c8ec2130477d0f57aa882c0654d7a7db
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'tests:index'
