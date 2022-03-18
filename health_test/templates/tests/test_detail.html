@@ -10,13 +10,23 @@
         <h2>{{ test.title }}</h2>
         <p class="lead">{{ test.description|linebreaks }}</p>
       </div>
-  
-      <div class="row g-5">
+      {% if add_result %}
+          <h3>Ответ добавлен в личный кабинет</h1>
+      {% endif %}
+      <div class="row g-2">
         {% if result %}
         <div class="col-md-7 col-lg-8">
             <h1 class="mb-3">{{ result }}</h1>
               <a class="btn btn-outline-success" href="{% url 'tests:test_detail' test.slug %}" role="button">Пройти тест заново</a>
               <a class="btn btn-outline-success" href="{% url 'tests:index' %}" role="button">На главную</a>
+        </div>
+              <!--
+                {% if request.user.is_authenticated %}
+                <div class="col-md-7 col-lg-5">
+                  <a class="btn btn-outline-success col-9" href="{% url 'tests:index' %}" role="button">Сохранить ответ!</a>
+                </div>
+              {% endif %}
+              Надо подучить javascript чтобы дать выбор пользователю грузить в бд или нет-->
         {% endif %}
 
         {% if form %}

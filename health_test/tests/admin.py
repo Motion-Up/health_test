@@ -1,9 +1,10 @@
 import re
 
 from django.contrib import admin
-from django.shortcuts import get_object_or_404
 
-from .models import Test, Parameter, ParameterTest, AnswerTest, Answer
+from .models import (
+    Test, Parameter, ParameterTest, AnswerTest, Answer, UserResults, UserResults
+)
 
 
 class TestAdmin(admin.ModelAdmin):
@@ -23,7 +24,9 @@ class TestAdmin(admin.ModelAdmin):
             formula = test.formula
             if test.achievements:
                 for achieve in test.achievements.all():
-                    formula = formula.replace(f'{achieve.name_for_formula}', '')
+                    formula = formula.replace(
+                        f'{achieve.name_for_formula}', ''
+                    )
             if len(re.findall(r'[а-яА-Яa-zA-Z]', formula)) != 0:
                 test.is_active = False
                 test.save()
@@ -33,7 +36,10 @@ class TestAdmin(admin.ModelAdmin):
             return super().save_model(request, obj, form, change)
         obj.save()
 
-    list_display = ('pk', 'title', 'achievements_name', 'formula', 'answer_name', 'is_active')
+    list_display = (
+        'pk', 'title', 'achievements_name',
+        'formula', 'answer_name', 'is_active'
+    )
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title',)
     empty_value_display = '-пусто-'
@@ -55,8 +61,13 @@ class AnswerTestAdmin(admin.ModelAdmin):
     list_display = ('test', 'answer',)
 
 
+class UserResultsAdmin(admin.ModelAdmin):
+    list_display = ('test', 'user', 'result', 'date')
+
+
 admin.site.register(Test, TestAdmin)
 admin.site.register(Parameter, ParameterAdmin)
 admin.site.register(ParameterTest, ParameterTestAdmin)
 admin.site.register(Answer, AnswerAdmin)
 admin.site.register(AnswerTest, AnswerTestAdmin)
+admin.site.register(UserResults, UserResultsAdmin)
