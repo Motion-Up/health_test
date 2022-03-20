@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .forms import TestForm
-from .models import Test
+from .models import Test, UserResults
 
 
 def index(request):
@@ -33,6 +33,13 @@ def test_detail(request, test_slug):
                 'result': result,
                 'test': test
             }
+            if request.user.is_authenticated:
+                UserResults(
+                    user=request.user,
+                    test=test,
+                    result=result
+                ).save()
+                context['add_result'] = True
             return render(request, 'tests/test_detail.html', context=context)
 
     context = {

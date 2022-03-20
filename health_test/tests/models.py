@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 
 FIELD_TYPE = [
@@ -7,6 +8,9 @@ FIELD_TYPE = [
     ('bool', 'Выбор'),
     ('choice', 'Шкала')
 ]
+
+
+User = get_user_model()
 
 
 class Test(models.Model):
@@ -159,3 +163,28 @@ class AnswerTest(models.Model):
         ]
         verbose_name = 'Ответ - Тест'
         verbose_name_plural = 'Ответ - Тест'
+
+
+class UserResults(models.Model):
+    test = models.ForeignKey(
+        Test,
+        on_delete=models.CASCADE,
+        verbose_name='Тест',
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Пользователь'
+    )
+    result = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.test
+
+    class Meta:
+        verbose_name = 'Ответы пользавателей'
+        verbose_name_plural = 'Ответы пользавателей'
