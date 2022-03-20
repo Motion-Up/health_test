@@ -12,6 +12,7 @@ urlpatterns = [
     # будут прернаправлены в модуль django.contrib.auth
     path('auth/', include('django.contrib.auth.urls')),
     path('', include('tests.urls', namespace='tests')),
+    path('account/', include('account.urls', namespace='account'))
 ]
 
 handler404 = 'core.views.page_not_found'
@@ -25,6 +26,6 @@ if settings.DEBUG:
     )
     urlpatterns += static(
         settings.STATIC_URL,
-        document_root=settings.STATIC_ROOT,
-        #document_root=settings.STATICFILES_DIRS
+        #document_root=settings.STATIC_ROOT,
+        document_root=settings.STATICFILES_DIRS
     )
