@@ -182,6 +182,9 @@ class UserResults(models.Model):
     )
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self) -> str:
+        return self.test
+
     class Meta:
         verbose_name = 'Ответы пользавателей'
         verbose_name_plural = 'Ответы пользавателей'
