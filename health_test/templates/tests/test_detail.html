@@ -15,10 +15,8 @@
         {% if result %}
         <div class="col-md-7 col-lg-8">
             <h1 class="mb-3">{{ result }}</h1>
-            <form action="{% url 'tests:test_detail' test.slug %}">
-              <button class="btn btn-outline-success" type="submit">Пройти тест заново</button>
-              <button class="btn btn-outline-success" type="submit">На главную</button>
-            </form>
+              <a class="btn btn-outline-success" href="{% url 'tests:test_detail' test.slug %}" role="button">Пройти тест заново</a>
+              <a class="btn btn-outline-success" href="{% url 'tests:index' %}" role="button">На главную</a>
         {% endif %}
 
         {% if form %}
