@@ -19,6 +19,7 @@
             <h1 class="mb-3">{{ result }}</h1>
               <a class="btn btn-outline-success" href="{% url 'tests:test_detail' test.slug %}" role="button">Пройти тест заново</a>
               <a class="btn btn-outline-success" href="{% url 'tests:index' %}" role="button">На главную</a>
+
         </div>
               <!--
                 {% if request.user.is_authenticated %}
@@ -27,6 +28,7 @@
                 </div>
               {% endif %}
               Надо подучить javascript чтобы дать выбор пользователю грузить в бд или нет-->
+
         {% endif %}
 
         {% if form %}
