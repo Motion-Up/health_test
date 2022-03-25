@@ -136,4 +136,3 @@ bin/
 health_test/static
 health_test/media
 health_test/gunicorn_config.py
-
