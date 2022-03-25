@@ -1,6 +1,5 @@
 from django.contrib.sitemaps import Sitemap
 from tests.models import Test
-from django.urls import reverse
 
 
 class TestSitemap(Sitemap):
@@ -12,4 +11,4 @@ class TestSitemap(Sitemap):
         return Test.objects.all()
 
     def location(self, obj):
-        return '/test/%s' % (obj.slug)
+        return '/viewoutside.ru/test/%s' % (obj.slug)
