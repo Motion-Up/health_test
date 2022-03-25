@@ -1,6 +1,5 @@
 from django.contrib.sitemaps import Sitemap
 from tests.models import Test
-from django.urls import reverse
 
 
 class TestSitemap(Sitemap):
