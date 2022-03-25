@@ -1,8 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 
 from . import settings
+from core.sitemaps import TestSitemap
+
+
+sitemaps = {
+    'test': TestSitemap
+}
 
 
 urlpatterns = [
@@ -12,7 +19,11 @@ urlpatterns = [
     # будут прернаправлены в модуль django.contrib.auth
     path('auth/', include('django.contrib.auth.urls')),
     path('', include('tests.urls', namespace='tests')),
-    path('account/', include('account.urls', namespace='account'))
+    path('account/', include('account.urls', namespace='account')),
+    path(
+        'sitemap.xml', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'
+    ),
 ]
 
 handler404 = 'core.views.page_not_found'
