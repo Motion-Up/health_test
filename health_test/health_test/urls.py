@@ -20,10 +20,8 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('', include('tests.urls', namespace='tests')),
     path('account/', include('account.urls', namespace='account')),
-    path(
-        'sitemap.xml', sitemap, {'sitemaps': sitemaps},
-        name='django.contrib.sitemaps.views.sitemap'
-    ),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+     name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 handler404 = 'core.views.page_not_found'
