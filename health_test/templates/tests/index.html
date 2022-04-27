@@ -5,71 +5,40 @@
 {% endblock %}
 
 {% block content %}
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      {% for test in tests %}
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ test.pk }}" aria-label="Slide {{ test.pk }}"></button>
-      {% endfor %}
+
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Добро пожаловать в приложение ViewOutside</h1>
+      <p class="lead text-muted">Вы можете пройти любой интересующий Вас тест и узнать результат.
+        Для отслеживания своих результатов в личном кабинете Вам нужно зарегистрироваться или войти в систему.</p>
+      </p>
+      <p>
+        <a href="#post_form" class="btn btn-primary btn-lg my-2">Узнать обо всех тестах</a>
+        <a href="https://t.me/visatobalii" class="btn btn-primary btn-lg my-2">Пройти в личный кабинет</a>
+      </p>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="8000">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
-
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Добро пожаловать {{ user.username }}!</h1>
-            <p>Сайт для проведения тестов!</p>
-          </div>
-        </div>
-      </div>
-
-        {% for test in tests %}
-        <div class="carousel-item" data-bs-interval="8000">
-        <!--  <p><img class="bd-placeholder-img" width="100%" height="100%" src="{{m.photo.url}}" aria-hidden="true" ></p>  -->
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#181818"/></svg>
-        <div class="container">
-          <div class="carousel-caption ext-end">
-            <h1>{{ test.title }}</h1>
-            <p>{{ test.title }}</p>
-            <p><a class="btn btn-lg btn-primary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование</a></p>
-          </div>
-        </div>
-      </div>
-        {% endfor %}
-
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-
-
+</section>
 
   <div class="container marketing" id="tests">
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-4">
 
         {% for test in tests %}
-        <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#547"/></svg>  -->
+        <div class="col-lg-4">
         <p><img class="img-article-left thumb" src="{{ test.image.url }}" width="140" height="140"></p>
         <h2>{{ test.title }}</h2>
         <p>{{ test.content | truncatechars:150 }}</p>
-        <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование &raquo;</a></p>
+        <div class="btn-cont">
+          <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование &raquo;</a></p>
+        </div>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
         {% endfor %}
 
 
-      </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
   </div><!-- /.container -->

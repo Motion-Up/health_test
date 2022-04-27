@@ -1,13 +1,13 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light pb-3 mb-4 fixed-top border-bottom bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'tests:index' %}">Главная</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!--<li class="nav-item">
             <a class="nav-link" aria-current="page" href="#">Личный кабинет</a>
           </li> -->
@@ -17,9 +17,6 @@
           <li>
             <a class="nav-link disabled" href="">Новости (на этапе тестирования)</a>
           </li>
-        </ul>
-
-        <ul class="navbar-nav me-2 justify-content-end">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url "account:profile" %}">Личный кабинет {{user.first_name}}</a>
@@ -32,10 +29,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="{% url "users:signup" %}">Регистрация</a>
-          {% endif %}
           </li>
+          {% endif %}
         </ul>
-
       </div>
     </div>
   </nav>
