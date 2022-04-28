@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from tests.models import UserResults, Test
 import json
 
@@ -25,12 +25,13 @@ def get_results(request, test_slug):
         test=test.id
     )
     results = [float(result.result) for result in user_results]
+    if len(results) == 0:
+        return redirect('account:profile')
     minimum = int(min(results))
     maximum = int(max(results)) + 1
     # Это нужно для корректно отправки данных для javascript
     results = json.dumps(results)
     day = [result.date.strftime("%Y-%m-%d") for result in user_results]
-    print(day)
     context = {
         'mail': 'ignatdan',
         'results': results,
@@ -41,3 +42,21 @@ def get_results(request, test_slug):
         'user_results': user_results
     }
     return render(request, 'account/test_results.html', context=context)
+
+
+@login_required
+def delete_result(request, test_slug, result_id):
+    user_result = get_object_or_404(UserResults, id=result_id)
+    user_result.delete()
+    return redirect('account:get_results', test_slug=test_slug)
+
+
+@login_required
+def edit_result(request, test_slug, result_id):
+    user_result = get_object_or_404(UserResults, id=result_id)
+    new_result = request.POST.get('result')
+    if not new_result:
+        return redirect('account:get_results', test_slug=test_slug)
+    user_result.result = request.POST['result']
+    user_result.save()
+    return redirect('account:get_results', test_slug=test_slug)

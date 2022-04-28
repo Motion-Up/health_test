@@ -9,38 +9,39 @@
 
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="col-lg-8 col-md-8 mx-auto">
       <h1 class="fw-light">Добро пожаловать в приложение ViewOutside</h1>
       <p class="lead text-muted">Вы можете пройти любой интересующий Вас тест и узнать результат.
         Для отслеживания своих результатов в личном кабинете Вам нужно зарегистрироваться или войти в систему.</p>
       </p>
       <p>
-        <a href="#post_form" class="btn btn-primary btn-lg my-2">Узнать обо всех тестах</a>
-        <a href="https://t.me/visatobalii" class="btn btn-primary btn-lg my-2">Пройти в личный кабинет</a>
+        <a href="#post_form" class="btn btn-primary btn-lg my-2">Все тесты</a>
+        <a href="https://t.me/visatobalii" class="btn btn-primary btn-lg my-2">Личный кабинет</a>
       </p>
     </div>
   </div>
 </section>
 
-  <div class="container marketing" id="tests">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom text-center">Тесты</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-1">
 
-        {% for test in tests %}
-        <div class="col-lg-4">
-        <p><img class="img-article-left thumb" src="{{ test.image.url }}" width="140" height="140"></p>
-        <h2>{{ test.title }}</h2>
-        <p>{{ test.content | truncatechars:150 }}</p>
-        <div class="btn-cont">
-          <p><a class="btn btn-secondary" href="{% url 'tests:test_detail' test.slug %}">Пройти тестирование &raquo;</a></p>
+      {% for test in tests %}
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <img class="img-article-left thumb" src="{{ test.image.url }}" width="140" height="140">
         </div>
-      </div><!-- /.col-lg-4 -->
-        {% endfor %}
-
-
-    </div><!-- /.row -->
-
-  </div><!-- /.container -->
+        <div>
+          <h2>{{ test.title }}</h2>
+          <p>{{ test.description }}</p>
+          <a href="{% url 'tests:test_detail' test.slug %}" class="btn btn-primary">
+            Пройти тест &raquo;
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 
   {% endblock %}
