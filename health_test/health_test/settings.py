@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'account.apps.AccountConfig',
+    'rest_framework',
+    'api.apps.ApiConfig',
 ]
 
 SITE_ID = 1
