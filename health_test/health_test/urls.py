@@ -24,6 +24,7 @@ urlpatterns = [
         'sitemap.xml', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'
     ),
+    path('api/', include('api.urls', namespace='api')),
 ]
 
 handler404 = 'core.views.page_not_found'
