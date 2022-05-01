@@ -1,13 +1,14 @@
 import re
 
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from .models import (
-    Test, Parameter, ParameterTest, AnswerTest, Answer, UserResults, UserResults
+    Test, Parameter, ParameterTest, AnswerTest, Answer, UserResults
 )
 
 
-class TestAdmin(admin.ModelAdmin):
+class TestAdmin(TranslationAdmin):
     def achievements_name(self, obj):
         achievements = ParameterTest.objects.filter(test=obj)
         return [achieve.parameter for achieve in achievements]
@@ -45,7 +46,7 @@ class TestAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-class ParameterAdmin(admin.ModelAdmin):
+class ParameterAdmin(TranslationAdmin):
     list_display = ('name', 'field_type', 'name_for_formula',)
 
 
@@ -53,7 +54,7 @@ class ParameterTestAdmin(admin.ModelAdmin):
     list_display = ('test', 'parameter',)
 
 
-class AnswerAdmin(admin.ModelAdmin):
+class AnswerAdmin(TranslationAdmin):
     list_display = ('answer',)
 
 
