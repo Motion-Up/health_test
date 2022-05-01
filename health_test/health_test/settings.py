@@ -1,4 +1,6 @@
 import os
+from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 
 from dotenv import load_dotenv
 
@@ -23,6 +25,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -35,6 +38,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'account.apps.AccountConfig',
+    'rest_framework',
+    'api.apps.ApiConfig',
+    'djoser',
 ]
 
 SITE_ID = 1
@@ -135,3 +141,24 @@ CSRF_TRUSTED_ORIGINS = [
     'http://viewoutside.ru',
     'http://www.viewoutside.ru'
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+
+SIMPLE_JWT = {
+    # Устанавливаем срок жизни токена
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+
+LANGUAGES = [('ru', _('Russian')), ('en', _('English')), ]
