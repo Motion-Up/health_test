@@ -3,6 +3,8 @@ from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
 
 from dotenv import load_dotenv
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 
 load_dotenv()
@@ -12,6 +14,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 SECRET_KEY = os.getenv('TOKEN')
+
+sentry_sdk.init(
+    dsn=os.getenv('DSN'),
+    integrations=[DjangoIntegration()],
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
